@@ -1,0 +1,128 @@
+<html>
+
+
+<head>
+	<title>Clicker gamer</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+<style>
+
+h1 {
+text-align:center;
+}
+
+table, td {
+    border: 10px dashed gray;	
+	align:center;
+}
+
+td {
+width:10vw;
+height:10vw;
+}
+
+.red {
+	background-color:rgb(153,153,153)
+}
+img {
+	width:5vw;
+	height:5vw;
+	}
+text{
+	font-size:4.5vw;
+	}
+.noborder {
+    border: none;
+    
+    }
+h1  {
+    font-size: 7vw
+    }
+    
+</style>
+
+
+<body>
+<center>
+<h1>Klikikli mäng</h1>
+<table class="noborder">
+    <tr>
+        <td class="noborder"><img src="img/elu.png"></td>
+        <td class="noborder"><text>1</text></td>
+        <td class="noborder"><img src="img/star.png"></td>
+        <td class="noborder"><text>0</text></td>
+    </tr>
+</table>
+<table>
+  <tr>
+    <td id="11"></td>
+    <td id="12"></td> 
+    <td id="13"></td>
+	<td id="14"></td>
+    <td id="15"></td>
+  </tr>
+  <tr>
+    <td id="21"></td>
+    <td id="22"></td> 
+    <td id="23"></td>
+	<td id="24"></td>
+    <td id="25"></td>
+  </tr>
+  <tr>
+    <td id="31"></td>
+    <td id="32"></td> 
+    <td id="33"></td>
+	<td id="34"></td>
+    <td id="35"></td>
+  </tr>
+  <tr>
+    <td id="41"></td>
+    <td id="42"></td> 
+    <td id="43"></td>
+	<td id="45"></td>
+    <td id="45"></td>
+  </tr>
+  <tr>
+    <td id="51"></td>
+    <td id="52"></td> 
+    <td id="53"></td>
+	<td id="54"></td>
+    <td id="55"></td>
+  </tr>
+</table>
+</center>
+	
+</body>
+
+<script>
+
+	function  getRandomNumber(){
+		return Math.floor(Math.random() * 5) + 1 ; 
+	}
+	
+	 function getRandomSquare(){
+        let y = getRandomNumber().toString();
+        let x = getRandomNumber().toString();
+        console.log(y + "   " + x);
+        return y+x;
+    }
+	
+	
+	
+	function makeRedSquare(){
+		$("td").removeClass("red");
+		let id = getRandomSquare();
+		console.log(id);
+		$("#" + id).addClass("red");
+	}
+	
+	
+	
+	setInterval(makeRedSquare, 1000);
+	
+	
+</script>
+
+
+</html>
