@@ -3,7 +3,7 @@
 
 <head>
 	<title>Clicker gamer</title>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="css/jquery.min.js"></script>
 </head>
 
 <style>
@@ -49,12 +49,12 @@ h1  {
 <table class="noborder">
     <tr>
         <td class="noborder"><img src="img/elu.png"></td>
-        <td class="noborder"><text>1</text></td>
+        <td class="noborder"><text id="healthText">1</text></td>
         <td class="noborder"><img src="img/star.png"></td>
-        <td class="noborder"><text>0</text></td>
+        <td class="noborder"><text id="scoreText">0</text></td>
     </tr>
 </table>
-<table>
+<table class="gameboard">
   <tr>
     <td id="11"></td>
     <td id="12"></td> 
@@ -97,31 +97,53 @@ h1  {
 
 <script>
 
-	function  getRandomNumber(){
-		return Math.floor(Math.random() * 5) + 1 ; 
-	}
-	
-	 function getRandomSquare(){
+    let switchInterval =1000
+    
+    let health = 1;
+    let score = 0;
+
+    let redSquareId = "";
+    
+    makeRedSquare();
+    let refreshInteraval = setInterval(makeRedSquare, 1000);
+
+    $(".gameboard tr td").click(function() {
+        if (this.id == redSquareId) {
+            score += 1;
+            $("#scoreText").text(score);
+            makeRedSquare();
+            clearInterval(refreshInteraval);
+            makeRedSquare();
+            refreshInteraval = setInterval(makeRedSquare, 1000);
+        } else {
+            health -= 1;
+            $("#healthText").text(health);
+        }
+    });
+
+    function getRandomNumber() {
+        return Math.floor(Math.random() * 5) + 1 ; 
+        }
+    
+    function getRandomSquare(){
         let y = getRandomNumber().toString();
         let x = getRandomNumber().toString();
-        console.log(y + "   " + x);
         return y+x;
     }
 	
 	
 	
-	function makeRedSquare(){
-		$("td").removeClass("red");
-		let id = getRandomSquare();
-		console.log(id);
-		$("#" + id).addClass("red");
-	}
+    function makeRedSquare(){
+        $("td").removeClass("red");
+        let id = getRandomSquare();
+        redSquareId = id;
+        $("#" + id).addClass("red");
+    }
 	
 	
-	
-	setInterval(makeRedSquare, 1000);
-	
-	
+
+
+
 </script>
 
 
